@@ -26,4 +26,13 @@ Rentapolis::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.generators do |g|
+    g.test_framework :rspec
+    g.javascripts false
+    g.stylesheets false
+    g.helper false
+    g.view_specs false
+    g.fixture_replacement :factory_girl, dir: 'spec/factories'
+  end
 end
