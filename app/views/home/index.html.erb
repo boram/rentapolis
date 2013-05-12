@@ -1,2 +1,6 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<% if current_user %>
+  <p>Signed in as <%= current_user.email %></p>
+  <%= link_to "Sign out", signout_path, id: "sign-out" %>
+<% else %>
+  <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign-in" %>
+<% end %>

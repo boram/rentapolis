@@ -46,5 +46,9 @@ Rentapolis::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  get 'auth/:provider/callback', to: 'sessions#create', as: :omniauth_callback
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
+
   root to: 'home#index'
 end

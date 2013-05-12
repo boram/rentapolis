@@ -8,18 +8,21 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'puma'
+gem 'omniauth-facebook', '1.4.0'
 
 group :development, :test do
   gem 'debugger'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'quiet_assets'
+  gem 'awesome_print'
 end
 
 group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'database_cleaner', '1.0.0.RC1'
 end
 
 group :doc do
