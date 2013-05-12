@@ -13,6 +13,7 @@ group :development, :test do
   gem 'debugger'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'quiet_assets'
 end
 
 group :test do
