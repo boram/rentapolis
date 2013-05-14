@@ -9,9 +9,12 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'puma'
 gem 'omniauth-facebook', '1.4.0'
+gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'formtastic'
 
 group :development, :test do
-  gem 'debugger'
+  gem 'pry'
+  gem 'pry-debugger'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'quiet_assets'

@@ -1,0 +1,12 @@
+<h2>Sign up</h2>
+<%= semantic_form_for @user, url: signup_path, html: { id: 'signup-form' } do |f| %>
+
+  <%= f.inputs do %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.submit 'Sign up' %>
+  <% end %>
+<% end %>

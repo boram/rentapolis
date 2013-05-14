@@ -1,0 +1,16 @@
+<%= form_tag signin_path, id: 'signin-form' do %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= label_tag :email %>
+        <%= text_field_tag :email %>
+      </li>
+      <li>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+      </li>
+    </ol>
+  </fieldset>
+
+  <%= submit_tag 'Sign in' %>
+<% end %>
