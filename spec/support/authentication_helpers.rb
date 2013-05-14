@@ -14,4 +14,13 @@ module AuthenticationHelpers
     mock_omniauth user.email
     visit omniauth_callback_path(provider)
   end
+
+  def logged_in email
+    expect(page).to have_content "Signed in as #{email}"
+    expect(page).to have_css 'a#sign-out', text: 'Sign out'
+  end
+
+  def logged_out
+    expect(page).to have_css 'a#sign-in', text: 'Sign in with Facebook'
+  end
 end

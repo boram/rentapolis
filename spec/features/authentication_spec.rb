@@ -10,9 +10,7 @@ feature 'Sign in' do
 
   scenario 'Clicking the Facebook sign in link', js: true do
     click_on 'Sign in with Facebook'
-
-    expect(page).to have_content "Signed in as #{email}"
-    expect(page).to have_css 'a#sign-out', text: 'Sign out'
+    logged_in email
   end
 end
 
@@ -23,6 +21,6 @@ feature 'Sign out' do
 
   scenario 'Clicking the sign out link' do
     click_on 'Sign out'
-    expect(page).to have_css 'a#sign-in', text: 'Sign in with Facebook'
+    logged_out
   end
 end
