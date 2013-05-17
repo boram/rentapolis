@@ -3,18 +3,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = if auth_hash = env["omniauth.auth"]
-      User.from_omniauth(auth_hash)
+    auth = Authentication.new(params, env["omniauth.auth"])
+    if auth.authenticated?
+      session[:user_id] = auth.user.id
+      redirect_to root_url, notice: "Logged in!"
     else
-      User.authenticate(params[:email], params[:password])
-    end
-
-    if user
-      session[:user_id] = user.id
-      redirect_to root_url, notice: 'Successfully signed in'
-    else
-      flash.now.alert = 'We do not recognize that email or password'
-      render :new
+      flash.now.alert = "Username or password is invalid"
+      render "new"
     end
   end
 
