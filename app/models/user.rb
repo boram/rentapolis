@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 
   with_options if: :require_validations? do |user|
-    user.validates :email, presence: true
-    user.validates :password, presence: true
+    user.validates :email, presence: true, email: true
+    user.validates :password, presence: true, length: { minimum: 4 }
   end
 
   attr_accessor :password

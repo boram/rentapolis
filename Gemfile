@@ -11,6 +11,7 @@ gem 'puma'
 gem 'omniauth-facebook', '1.4.0'
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'formtastic'
+gem 'valid_email'
 
 group :development, :test do
   gem 'pry'
