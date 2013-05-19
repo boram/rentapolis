@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130514061646) do
+ActiveRecord::Schema.define(version: 20130519212905) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "postgis"
+
+  create_table "rentals", force: true do |t|
+    t.integer  "beds"
+    t.decimal  "baths",                                                       precision: 2, scale: 1
+    t.string   "unit_type"
+    t.integer  "sqft"
+    t.text     "description"
+    t.decimal  "rent",                                                        precision: 6, scale: 2
+    t.string   "rent_per"
+    t.decimal  "deposit",                                                     precision: 6, scale: 2
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.spatial  "projected_coordinates", limit: {:srid=>3785, :type=>"point"}
+  end
+
+  add_index "rentals", ["projected_coordinates"], :name => "index_rentals_on_projected_coordinates", :spatial => true
 
   create_table "users", force: true do |t|
     t.string   "provider"

@@ -32,6 +32,8 @@ group :test do
   gem 'launchy'
   gem 'poltergeist'
   gem 'database_cleaner', '1.0.0.RC1'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :doc do

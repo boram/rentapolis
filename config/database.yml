@@ -1,7 +1,9 @@
 development:
-  adapter: postgresql
+  adapter: postgis
   encoding: unicode
   database: rentapolis_development
+  schema_search_path: public,postgis
+  script_dir: /usr/local/share/postgis
   pool: 5
   username: boram
   password:
@@ -10,17 +12,21 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  adapter: postgresql
+  adapter: postgis
   encoding: unicode
   database: rentapolis_test
+  schema_search_path: public,postgis
+  script_dir: /usr/local/share/postgis
   pool: 5
   username: boram
   password:
 
 production:
-  adapter: postgresql
+  adapter: postgis
   encoding: unicode
   database: rentapolis
+  schema_search_path: public,postgis
+  script_dir: /usr/local/share/postgis
   pool: 5
   username: rentapolis
   password:
