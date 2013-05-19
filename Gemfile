@@ -12,6 +12,11 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'formtastic'
 gem 'valid_email'
+gem 'geocoder'
+gem 'activerecord-postgis-adapter'
+gem 'rgeo-shapefile'
+gem 'rgeo-geojson'
+gem 'ffi-geos'
 
 group :development, :test do
   gem 'pry'
