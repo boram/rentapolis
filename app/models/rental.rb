@@ -61,6 +61,14 @@ class Rental < ActiveRecord::Base
     geographic_point.longitude
   end
 
+  def associate_neighborhood
+    self.neighborhood = begin
+      if polygon = Polygon.find_by_coordinates(latitude, longitude)
+        polygon.neighborhood
+      end
+    end
+  end
+
   protected
 
   def single_room?
@@ -78,13 +86,5 @@ class Rental < ActiveRecord::Base
 
   def geographic_point
     geographic_point = GEOFACTORY.unproject(projected_coordinates)
-  end
-
-  def associate_neighborhood
-    self.neighborhood = begin
-      if polygon = Polygon.find_by_coordinates(latitude, longitude)
-        polygon.neighborhood
-      end
-    end
   end
 end
