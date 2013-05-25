@@ -11,11 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130519212905) do
+ActiveRecord::Schema.define(version: 20130525154258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "neighborhoods", force: true do |t|
+    t.string  "name"
+    t.string  "city"
+    t.string  "county"
+    t.boolean "incorporated"
+    t.string  "source"
+  end
+
+  add_index "neighborhoods", ["name"], :name => "index_neighborhoods_on_name"
+
+  create_table "polygons", force: true do |t|
+    t.integer "neighborhood_id"
+    t.spatial "region",          limit: {:srid=>3785, :type=>"polygon"}
+  end
+
+  add_index "polygons", ["region"], :name => "index_polygons_on_region", :spatial => true
 
   create_table "rentals", force: true do |t|
     t.integer  "beds"
@@ -33,6 +50,7 @@ ActiveRecord::Schema.define(version: 20130519212905) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.spatial  "projected_coordinates", limit: {:srid=>3785, :type=>"point"}
+    t.integer  "neighborhood_id"
   end
 
   add_index "rentals", ["projected_coordinates"], :name => "index_rentals_on_projected_coordinates", :spatial => true

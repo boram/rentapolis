@@ -1,5 +1,7 @@
 class Rental < ActiveRecord::Base
 
+  belongs_to :neighborhood
+
   validates :beds, presence: true, if: :require_beds?
   validates :baths, presence: true, if: :require_baths?
   validates :unit_type, presence: true
@@ -18,6 +20,8 @@ class Rental < ActiveRecord::Base
     if geo = results.first
       rental.projected_coordinates = GEOFACTORY.point(geo.longitude, geo.latitude).projection
     end
+
+    rental.associate_neighborhood
   end
 
   after_validation :geocode, if: :geocode_address?
@@ -74,5 +78,13 @@ class Rental < ActiveRecord::Base
 
   def geographic_point
     geographic_point = GEOFACTORY.unproject(projected_coordinates)
+  end
+
+  def associate_neighborhood
+    self.neighborhood = begin
+      if polygon = Polygon.find_by_coordinates(latitude, longitude)
+        polygon.neighborhood
+      end
+    end
   end
 end
