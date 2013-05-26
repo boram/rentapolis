@@ -14,10 +14,7 @@ FactoryGirl.define do
     rent 1200.00
     rent_per 'month'
     deposit 1200.00
-    street '1216 Brockton Avenue'
-    city 'Los Angeles'
-    state 'CA'
-    zip '90025'
+    chinatown_address
 
     factory :single do
       beds nil
@@ -32,5 +29,33 @@ FactoryGirl.define do
         unit_type 'bachelor'
       end
     end
+
+    trait :chinatown_address do
+      association :neighborhood, factory: :chinatown
+      street '727 North Broadway'
+      city 'Los Angeles'
+      state 'CA'
+      zip '90012'
+    end
+
+    trait :culver_city_address do
+      association :neighborhood, factory: :culver_city
+      street '12565 Washington Blvd'
+      city 'Los Angeles'
+      state 'CA'
+      zip '90066'
+    end
+
+    trait :venice_address do
+      association :neighborhood, factory: :venice
+      street '822 West Washington Blvd'
+      city 'Los Angeles'
+      state 'CA'
+      zip '90291'
+    end
+
+    factory :chinatown_apartment, traits: [:chinatown_address]
+    factory :culver_city_apartment, traits: [:culver_city_address]
+    factory :venice_apartment, traits: [:venice_address]
   end
 end

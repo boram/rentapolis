@@ -1,0 +1,123 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=1600%20Main%20Street,%20Venice%20CA%2090291&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 26 May 2013 00:56:56 GMT
+      Expires:
+      - Mon, 27 May 2013 00:56:56 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - '*'
+      Server:
+      - mafe
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "1600",
+                       "short_name" : "1600",
+                       "types" : [ "street_number" ]
+                    },
+                    {
+                       "long_name" : "Main Street",
+                       "short_name" : "Main St",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Venice",
+                       "short_name" : "Venice",
+                       "types" : [ "sublocality", "political" ]
+                    },
+                    {
+                       "long_name" : "Los Angeles",
+                       "short_name" : "Los Angeles",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Los Angeles",
+                       "short_name" : "Los Angeles",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "California",
+                       "short_name" : "CA",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "United States",
+                       "short_name" : "US",
+                       "types" : [ "country", "political" ]
+                    },
+                    {
+                       "long_name" : "90291",
+                       "short_name" : "90291",
+                       "types" : [ "postal_code" ]
+                    }
+                 ],
+                 "formatted_address" : "1600 Main Street, Venice, CA 90291, USA",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 33.98797690,
+                          "lng" : -118.47098150
+                       },
+                       "southwest" : {
+                          "lat" : 33.98797070,
+                          "lng" : -118.47099840
+                       }
+                    },
+                    "location" : {
+                       "lat" : 33.98797690,
+                       "lng" : -118.47098150
+                    },
+                    "location_type" : "RANGE_INTERPOLATED",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 33.98932278029150,
+                          "lng" : -118.4696409697085
+                       },
+                       "southwest" : {
+                          "lat" : 33.98662481970850,
+                          "lng" : -118.4723389302915
+                       }
+                    }
+                 },
+                 "postcode_localities" : [],
+                 "types" : [ "street_address" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Sun, 26 May 2013 00:56:56 GMT
+recorded_with: VCR 2.5.0

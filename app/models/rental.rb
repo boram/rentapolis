@@ -62,10 +62,8 @@ class Rental < ActiveRecord::Base
   end
 
   def associate_neighborhood
-    self.neighborhood = begin
-      if polygon = Polygon.find_by_coordinates(latitude, longitude)
-        polygon.neighborhood
-      end
+    if polygon = Polygon.find_by_coordinates(latitude, longitude)
+      self.neighborhood = polygon.neighborhood
     end
   end
 

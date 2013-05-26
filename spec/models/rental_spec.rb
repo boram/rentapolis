@@ -176,4 +176,20 @@ describe Rental do
     end
   end
 
+  describe '#neighborhood', :vcr do
+    context 'given an address in a neighborhood' do
+      let(:rental) do
+        build :rental, street: '1600 Main Street',
+          city: 'Venice', state: 'CA', zip: '90291'
+      end
+
+      let!(:venice_polygon) { create :venice_polygon }
+
+      before { rental.save! }
+
+      it 'builds an association to it' do
+        expect(rental.neighborhood).to eq(venice_polygon.neighborhood)
+      end
+    end
+  end
 end
