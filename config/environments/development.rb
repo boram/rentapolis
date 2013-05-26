@@ -35,4 +35,6 @@ Rentapolis::Application.configure do
     g.view_specs false
     g.fixture_replacement :factory_girl, dir: 'spec/factories'
   end
+
+  config.ember.variant = :development
 end

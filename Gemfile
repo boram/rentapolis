@@ -17,6 +17,7 @@ gem 'activerecord-postgis-adapter'
 gem 'rgeo-shapefile'
 gem 'rgeo-geojson'
 gem 'ffi-geos'
+gem 'ember-rails'
 
 group :development, :test do
   gem 'pry'
