@@ -21,9 +21,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Mon, 20 May 2013 00:37:08 GMT
+      - Mon, 27 May 2013 01:02:14 GMT
       Expires:
-      - Tue, 21 May 2013 00:37:08 GMT
+      - Tue, 28 May 2013 01:02:14 GMT
       Cache-Control:
       - public, max-age=86400
       Access-Control-Allow-Origin:
@@ -119,125 +119,5 @@ http_interactions:
            "status" : "OK"
         }
     http_version: 
-  recorded_at: Mon, 20 May 2013 00:37:08 GMT
-- request:
-    method: get
-    uri: http://maps.googleapis.com/maps/api/geocode/json?address=12567%20Washington%20Blvd,%20Los%20Angeles%20CA%2090066&language=en&sensor=false
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json; charset=UTF-8
-      Date:
-      - Mon, 20 May 2013 00:45:28 GMT
-      Expires:
-      - Tue, 21 May 2013 00:45:28 GMT
-      Cache-Control:
-      - public, max-age=86400
-      Access-Control-Allow-Origin:
-      - '*'
-      Server:
-      - mafe
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Frame-Options:
-      - SAMEORIGIN
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: |
-        {
-           "results" : [
-              {
-                 "address_components" : [
-                    {
-                       "long_name" : "12567",
-                       "short_name" : "12567",
-                       "types" : [ "street_number" ]
-                    },
-                    {
-                       "long_name" : "West Washington Boulevard",
-                       "short_name" : "W Washington Blvd",
-                       "types" : [ "route" ]
-                    },
-                    {
-                       "long_name" : "Culver - West",
-                       "short_name" : "Culver - West",
-                       "types" : [ "neighborhood", "political" ]
-                    },
-                    {
-                       "long_name" : "Los Angeles",
-                       "short_name" : "Los Angeles",
-                       "types" : [ "locality", "political" ]
-                    },
-                    {
-                       "long_name" : "Los Angeles",
-                       "short_name" : "Los Angeles",
-                       "types" : [ "administrative_area_level_2", "political" ]
-                    },
-                    {
-                       "long_name" : "California",
-                       "short_name" : "CA",
-                       "types" : [ "administrative_area_level_1", "political" ]
-                    },
-                    {
-                       "long_name" : "United States",
-                       "short_name" : "US",
-                       "types" : [ "country", "political" ]
-                    },
-                    {
-                       "long_name" : "90066",
-                       "short_name" : "90066",
-                       "types" : [ "postal_code" ]
-                    }
-                 ],
-                 "formatted_address" : "12567 West Washington Boulevard, Los Angeles, CA 90066, USA",
-                 "geometry" : {
-                    "bounds" : {
-                       "northeast" : {
-                          "lat" : 33.99687420,
-                          "lng" : -118.4311910
-                       },
-                       "southwest" : {
-                          "lat" : 33.99685890,
-                          "lng" : -118.43119160
-                       }
-                    },
-                    "location" : {
-                       "lat" : 33.99687420,
-                       "lng" : -118.43119160
-                    },
-                    "location_type" : "RANGE_INTERPOLATED",
-                    "viewport" : {
-                       "northeast" : {
-                          "lat" : 33.99821553029150,
-                          "lng" : -118.4298423197085
-                       },
-                       "southwest" : {
-                          "lat" : 33.99551756970850,
-                          "lng" : -118.4325402802915
-                       }
-                    }
-                 },
-                 "postcode_localities" : [],
-                 "types" : [ "street_address" ]
-              }
-           ],
-           "status" : "OK"
-        }
-    http_version: 
-  recorded_at: Mon, 20 May 2013 00:45:28 GMT
+  recorded_at: Mon, 27 May 2013 01:02:14 GMT
 recorded_with: VCR 2.5.0

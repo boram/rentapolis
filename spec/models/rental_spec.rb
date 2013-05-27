@@ -97,40 +97,6 @@ describe Rental do
     end
   end
 
-  describe '#short_description' do
-    context 'by default' do
-      let(:rental) { build :rental, beds: 2, baths: 1 }
-
-      it 'displays beds, baths and unit type' do
-        expect(rental.short_description).to eq('2 bed 1 bath apartment')
-      end
-    end
-
-    context 'given half bathes' do
-      let(:rental) { build :rental, beds: 2, baths: 1.5 }
-
-      it 'displays half bathes' do
-        expect(rental.short_description).to eq('2 bed 1.5 bath apartment')
-      end
-    end
-
-    context 'given a bachelor' do
-      let(:rental) { build :bachelor }
-
-      it 'displays the unit type only' do
-        expect(rental.short_description).to eq('bachelor')
-      end
-    end
-
-    context 'given a single' do
-      let(:rental) { build :single }
-
-      it 'displays the unit type only' do
-        expect(rental.short_description).to eq('single')
-      end
-    end
-  end
-
   describe '#address' do
     let(:rental) do
       build :rental, street: '12565 Washington Blvd',
@@ -142,16 +108,15 @@ describe Rental do
     end
   end
 
-  describe 'coordinates' do
+  describe 'coordinates', :vcr do
     context 'given a new record' do
       let(:rental) do
-        build :rental, street: '12565 Washington Blvd',
-          city: 'Los Angeles', state: 'CA', zip: '90066'
+        build :rental, :culver_city_address
       end
 
       before { rental.save! }
 
-      it 'geocodes the address', :vcr do
+      it 'geocodes the address' do
         expect(rental.projected_coordinates).to be_kind_of(RGeo::Geos::CAPIPointImpl)
         expect(rental.latitude).to be_within(0.0000001).of 33.9968760
         expect(rental.longitude).to be_within(0.0000001).of -118.4311410
@@ -159,17 +124,14 @@ describe Rental do
     end
 
     context 'given an existing record' do
-      let(:rental) do
-        create :rental, street: '12565 Washington Blvd',
-          city: 'Los Angeles', state: 'CA', zip: '90066'
-      end
+      let(:rental) { create :culver_city_apartment }
 
       before do
         rental.update_attributes street: '727 North Broadway',
           city: 'Los Angeles', state: 'CA', zip: '90012'
       end
 
-      it 'updates the coordinates', :vcr do
+      it 'updates the coordinates' do
         expect(rental.latitude).to be_within(0.0000001).of 34.06140
         expect(rental.longitude).to be_within(0.0000001).of -118.2395050
       end
@@ -178,12 +140,11 @@ describe Rental do
 
   describe '#neighborhood', :vcr do
     context 'given an address in a neighborhood' do
-      let(:rental) do
-        build :rental, street: '1600 Main Street',
-          city: 'Venice', state: 'CA', zip: '90291'
-      end
-
       let!(:venice_polygon) { create :venice_polygon }
+
+      let(:rental) do
+        build :rental, :venice_address, neighborhood: nil
+      end
 
       before { rental.save! }
 

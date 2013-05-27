@@ -26,14 +26,6 @@ class Rental < ActiveRecord::Base
 
   after_validation :geocode, if: :geocode_address?
 
-  def short_description
-    if single_room?
-      unit_type
-    else
-      "#{beds} bed #{baths} bath #{unit_type}"
-    end
-  end
-
   def baths
     return unless baths_attr = read_attribute(:baths)
 
@@ -45,8 +37,11 @@ class Rental < ActiveRecord::Base
   end
 
   def address
-    area = [city, state, zip].join ' '
-    "#{street}, #{area}"
+    "#{street}, #{region}"
+  end
+
+  def region
+    [city, state, zip].join ' '
   end
 
   def coordinates
@@ -67,11 +62,11 @@ class Rental < ActiveRecord::Base
     end
   end
 
-  protected
-
   def single_room?
     unit_type.in? %w(single bachelor)
   end
+
+  protected
 
   def require_beds?
     !single_room?

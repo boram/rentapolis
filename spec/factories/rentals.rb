@@ -14,7 +14,7 @@ FactoryGirl.define do
     rent 1200.00
     rent_per 'month'
     deposit 1200.00
-    chinatown_address
+    venice_address
 
     factory :single do
       beds nil
@@ -31,7 +31,6 @@ FactoryGirl.define do
     end
 
     trait :chinatown_address do
-      association :neighborhood, factory: :chinatown
       street '727 North Broadway'
       city 'Los Angeles'
       state 'CA'
@@ -39,7 +38,6 @@ FactoryGirl.define do
     end
 
     trait :culver_city_address do
-      association :neighborhood, factory: :culver_city
       street '12565 Washington Blvd'
       city 'Los Angeles'
       state 'CA'
@@ -47,15 +45,31 @@ FactoryGirl.define do
     end
 
     trait :venice_address do
-      association :neighborhood, factory: :venice
-      street '822 West Washington Blvd'
-      city 'Los Angeles'
+      street '1600 Main Street'
+      city 'Venice'
       state 'CA'
       zip '90291'
     end
 
-    factory :chinatown_apartment, traits: [:chinatown_address]
-    factory :culver_city_apartment, traits: [:culver_city_address]
-    factory :venice_apartment, traits: [:venice_address]
+    trait :without_geocoding do
+      after(:build) do |rental|
+        rental.class.skip_callback(:validation, :after, :geocode)
+      end
+    end
+
+    factory :chinatown_apartment, traits: [:chinatown_address] do
+      association :neighborhood, factory: :chinatown
+      projected_coordinates 'POINT (-13162361.488248724 4037049.5286868075)'
+    end
+
+    factory :culver_city_apartment, traits: [:culver_city_address] do
+      association :neighborhood, factory: :culver_city
+      projected_coordinates 'POINT (-13183694.310186382 4028382.5569737027)'
+    end
+
+    factory :venice_apartment, traits: [:venice_address] do
+      association :neighborhood, factory: :venice
+      projected_coordinates 'POINT (-13188129.334359331 4027187.7317846473)'
+    end
   end
 end
