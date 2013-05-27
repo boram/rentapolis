@@ -1,0 +1,13 @@
+Rentapolis.Rental = DS.Model.extend
+  postedAt: DS.attr('string')
+  shortDescription: DS.attr('string')
+  sqft: DS.attr('string')
+  description: DS.attr('string')
+  rent: DS.attr('string')
+  deposit: DS.attr('string')
+  streetAddress: DS.attr('string')
+  region: DS.attr('string')
+  latitude: DS.attr('string')
+  longitude: DS.attr('string')
+  neighborhoodId: DS.attr('string')
+  neighborhood: DS.attr('string')

@@ -1,0 +1,23 @@
+<ol id='rentals'>
+{{#each model}}
+  <li class='rental'>
+    {{#linkTo 'rental' this}}
+      <div class='short-description'>
+        {{shortDescription}}
+      </div>
+
+      <div class='neighborhood'>
+        {{neighborhood}}
+      </div>
+
+      <div class='rent'>
+        {{rent}}
+      </div>
+    {{/linkTo}}
+  </li>
+{{/each}}
+</ol>
+
+<div id='rental-content'>
+  {{outlet}}
+</div>

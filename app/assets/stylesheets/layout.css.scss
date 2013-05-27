@@ -1,0 +1,65 @@
+@mixin page-width {
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3em;
+
+  .inner {
+    @include page-width;
+  }
+}
+
+#content {
+  @include page-width;
+  @include clearfix;
+}
+
+ol#rentals {
+  margin: 0;
+  padding: 1rem;
+  float: left;
+  list-style-type: none;
+  width: 40%;
+
+  li.rental a {
+    display: block;
+    padding: .5em;
+
+    &.active {
+      background: $slate-blue;
+    }
+  }
+}
+
+#rental-content {
+  position: relative;
+  width: 60%;
+  float: left;
+  padding: 1rem;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  address {
+    margin: 20px 0;
+    span {
+      display: block;
+    }
+  }
+
+  .financial {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-weight: bold;
+
+    span {
+      display: block;
+    }
+  }
+}
