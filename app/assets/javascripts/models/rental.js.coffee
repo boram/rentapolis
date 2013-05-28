@@ -4,6 +4,7 @@ Rentapolis.Rental = DS.Model.extend
   sqft: DS.attr('string')
   description: DS.attr('string')
   rent: DS.attr('string')
+  rentPer: DS.attr('string')
   deposit: DS.attr('string')
   streetAddress: DS.attr('string')
   region: DS.attr('string')

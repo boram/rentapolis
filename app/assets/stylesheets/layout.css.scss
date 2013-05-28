@@ -4,6 +4,11 @@
   padding-right: 20px;
 }
 
+html, body {
+  background-color: $off-white;
+  height: 100%;
+}
+
 header {
   text-align: center;
   margin-bottom: 3em;
@@ -16,21 +21,53 @@ header {
 #content {
   @include page-width;
   @include clearfix;
+  position: relative;
 }
 
 ol#rentals {
   margin: 0;
-  padding: 1rem;
+  padding: 20px;
   float: left;
   list-style-type: none;
-  width: 40%;
+  width: 500px;
 
   li.rental a {
+    @include clearfix;
+    position: relative;
     display: block;
-    padding: .5em;
+    padding: 10px;
 
     &.active {
-      background: $slate-blue;
+      background: $very-light-grey;
+    }
+
+    .thumbnail {
+      float: left;
+      width: 60px;
+      height: 60px;
+      background-color: $light-grey;
+      margin-right: 10px;
+    }
+
+    .content {
+      float: left;
+
+      .short-description, .neighborhood {
+        width: 200px;
+      }
+
+      .neighborhood {
+        margin-top: 5px;
+      }
+    }
+
+    .rent {
+      float: right;
+      width: 130px;
+
+      .rent-per {
+        font-size: .8rem;
+      }
     }
   }
 }

@@ -2,7 +2,7 @@ class RentalSerializer < ActiveModel::Serializer
   include ActionView::Helpers::NumberHelper
 
   attributes :id, :posted_at, :short_description, :sqft,
-    :description, :rent, :deposit, :street_address, :region,
+    :description, :rent, :rent_per, :deposit, :street_address, :region,
     :latitude, :longitude, :neighborhood_id, :neighborhood
 
   def posted_at
@@ -18,7 +18,7 @@ class RentalSerializer < ActiveModel::Serializer
   end
 
   def rent
-    "#{number_to_currency(object.rent)}/#{object.rent_per}"
+    number_to_currency object.rent
   end
 
   def deposit

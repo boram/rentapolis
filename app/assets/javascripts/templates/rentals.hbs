@@ -2,16 +2,21 @@
 {{#each model}}
   <li class='rental'>
     {{#linkTo 'rental' this}}
-      <div class='short-description'>
-        {{shortDescription}}
-      </div>
+      <div class='thumbnail'></div>
 
-      <div class='neighborhood'>
-        {{neighborhood}}
+      <div class='content'>
+        <div class='short-description'>
+          {{shortDescription}}
+        </div>
+
+        <div class='neighborhood'>
+          {{neighborhood}}
+        </div>
       </div>
 
       <div class='rent'>
         {{rent}}
+        <span class='rent-per'>/{{rentPer}}</span>
       </div>
     {{/linkTo}}
   </li>

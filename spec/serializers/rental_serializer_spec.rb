@@ -95,11 +95,19 @@ describe RentalSerializer do
     include_context 'rental'
 
     let(:formatted_rent) do
-      "#{number_to_currency(rental.rent)}/#{rental.rent_per}"
+      number_to_currency rental.rent
     end
 
     it 'is currency formatted' do
       expect(rental_serializer.rent).to eq formatted_rent
+    end
+  end
+
+  describe '#rent_per' do
+    include_context 'rental'
+
+    it 'is currency formatted' do
+      expect(rental_serializer.rent_per).to eq rental.rent_per
     end
   end
 
