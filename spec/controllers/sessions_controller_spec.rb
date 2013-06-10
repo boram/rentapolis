@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SessionsController do
+describe Api::SessionsController do
   describe '#create' do
     context 'omniauth sign in' do
       let(:user) { create :user }
@@ -13,26 +13,35 @@ describe SessionsController do
       context 'success' do
         before do
           auth.should_receive(:authenticated?).and_return true
+          post :create, session: { email: user.email, password: 'password' }
         end
 
         it 'sets the session' do
-          get :create
           expect(session[:user_id]).to eq(user.id)
-          expect(response).to redirect_to(root_url)
-          expect(flash[:notice]).to_not be_blank
+        end
+
+        it 'responds with the user id and email' do
+          expect(response).to be_successful
+
+          payload = JSON.parse(response.body)['user']
+          expect(payload).to include('email' => user.email)
+          expect(payload).to include('id' => user.id)
         end
       end
 
       context 'fail' do
         before do
           auth.should_receive(:authenticated?).and_return false
+          post :create, session: { email: user.email, password: 'password' }
         end
 
-        it 'renders the template and displays an error' do
-          get :create, provider: 'facebook'
+        it 'does not set the session' do
           expect(session[:user_id]).to be_nil
-          expect(response).to render_template(:new)
-          expect(flash.now[:alert]).to_not be_blank
+        end
+
+        it 'responds with an error message' do
+          payload = JSON.parse(response.body)
+          expect(payload).to include('message' => 'Invalid email or password')
         end
       end
     end
@@ -44,9 +53,8 @@ describe SessionsController do
     end
 
     it 'clears the session' do
-      get :destroy
+      delete :destroy
       expect(session[:user_id]).to be_nil
-      expect(response).to redirect_to(root_url)
     end
   end
 end

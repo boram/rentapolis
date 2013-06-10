@@ -1,7 +1,4 @@
 Rentapolis::Application.routes.draw do
-  get 'auth/:provider/callback', to: 'sessions#create', as: :omniauth_callback
-  get 'auth/failure', to: redirect('/')
-  get 'signout', to: 'sessions#destroy', as: :signout
 
   get 'signup', to: 'signup#new', as: :signup
   post 'signup', to: 'signup#create', as: :new_signup
@@ -10,6 +7,11 @@ Rentapolis::Application.routes.draw do
 
   namespace :api do
     resources :rentals
+    get 'auth/:provider/callback', to: 'sessions#create', as: :omniauth_callback
+    get 'auth/failure', to: redirect('/')
+    post 'sessions', to: 'sessions#create'
+    delete 'sessions', to: 'sessions#destroy'
+    resources :users, only: [:index, :show]
   end
 
   root to: 'home#index'

@@ -71,7 +71,7 @@ describe Authentication do
 
       context 'from password' do
         context 'for a non-existant user' do
-          let(:auth) { Authentication.new({}, nil) }
+          let(:auth) { Authentication.new }
 
           it 'is false' do
             expect(auth.authenticated?).to be_false
@@ -80,12 +80,12 @@ describe Authentication do
 
         context 'for an existing user' do
           let(:user) do
-            create :user, email: 'foo@bar.com', password: 'wrongpassword'
+            create :user, email: 'foo@bar.com', password: 'heyo'
           end
 
           context 'with invalid credentials' do
             let(:auth) do
-              Authentication.new({ email: 'boom@bam.com', password: 'heyo' }, nil)
+              Authentication.new email: 'boom@bam.com', password: 'wrongpassword'
             end
 
             it 'is false' do
@@ -95,7 +95,7 @@ describe Authentication do
 
           context 'with valid credentials' do
             let(:auth) do
-              Authentication.new({ email: user.email, password: user.password }, nil)
+              Authentication.new email: user.email, password: user.password
             end
 
             it 'is true' do

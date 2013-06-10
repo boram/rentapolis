@@ -1,13 +1,17 @@
 class Authentication
   attr_accessor :params, :omniauth
 
-  def initialize(params, omniauth = nil)
+  def initialize(params = {}, omniauth = nil)
     self.params = params
     self.omniauth = omniauth
   end
 
   def user
-    @user ||= omniauth ? user_from_omniauth : user_with_password
+    @user ||= if omniauth
+      user_from_omniauth
+    elsif params
+      user_with_password
+    end
   end
 
   def authenticated?

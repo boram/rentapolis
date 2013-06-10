@@ -1,0 +1,15 @@
+{{#if errorMessage}}
+  <div class="flash">{{ errorMessage }}</div>
+{{/if}}
+
+<form id='login-form'>
+  <fieldset>
+    <div>
+      {{view Ember.TextField valueBinding='email' name='email' placeholder='Email'}}
+    </div>
+    <div>
+      {{view Ember.TextField type="password" valueBinding='password' placeholder='Password'}}
+    </div>
+    <button type="submit" {{action login}}>Log in</button>
+  </fieldset>
+</form>

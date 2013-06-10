@@ -10,17 +10,18 @@ module AuthenticationHelpers
       }
   end
 
-  def sign_in user, provider = :facebook
-    mock_omniauth user.email
-    visit omniauth_callback_path(provider)
-  end
+  def log_in user, options = {}
+    visit root_path
 
-  def logged_in email
-    expect(page).to have_content "Signed in as #{email}"
-    expect(page).to have_css 'a#sign-out', text: 'Sign out'
-  end
-
-  def logged_out
-    expect(page).to have_css 'a#sign-in', text: 'Sign in with Facebook'
+    if provider = options[:with]
+      mock_omniauth user.email, provider
+      visit api_omniauth_callback_path(provider)
+    else
+      within '#login-form' do
+        fill_in 'Email', with: user.email
+        fill_in 'Password', with: user.password
+        click_button 'Log in'
+      end
+    end
   end
 end

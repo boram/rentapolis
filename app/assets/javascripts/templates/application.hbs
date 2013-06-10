@@ -2,9 +2,16 @@
   <div class='inner'>
     <h1>{{#linkTo 'rentals'}}Rentapolis{{/linkTo}}</h1>
     <nav>
-      {{#linkTo 'neighborhoods'}}Neighborhoods{{/linkTo}}
-      {{#linkTo 'prospects'}}Prospects{{/linkTo}}
-      {{#linkTo 'account'}}Account{{/linkTo}}
+      {{#linkTo neighborhoods}}Neighborhoods{{/linkTo}}
+      {{#linkTo prospects}}Prospects{{/linkTo}}
+      {{#linkTo account}}Account{{/linkTo}}
+
+      {{#if Rentapolis.currentUser}}
+        Logged in as {{Rentapolis.currentUser.email}}
+        <a href='#' id='log-out' {{action logout}}>Log out</a>
+      {{else}}
+        {{partial 'sessions/new'}}
+      {{/if}}
     </nav>
   </div>
 </header>

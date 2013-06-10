@@ -1,43 +1,45 @@
 require 'spec_helper'
 
-feature 'Sign in' do
-  let(:user) { create :user }
+feature 'Log in', js: true do
+  let!(:user) { create :user }
 
   background do
-    visit signin_path
-  end
-
-  scenario 'filling out the sign in form' do
-    within '#signin-form' do
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      click_button 'Sign in'
-    end
-    logged_in user.email
-  end
-end
-
-feature 'Facebook sign in' do
-  let(:email) { 'boom@example.com' }
-
-  background do
-    mock_omniauth email
     visit root_path
   end
 
-  scenario 'clicking the Facebook sign in link', js: true do
-    click_on 'Sign in with Facebook'
-    logged_in email
+  scenario 'using the log in form' do
+    within '#login-form' do
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'Log in'
+    end
+
+    expect(page).to have_content "Logged in as #{user.email}"
+    expect(page).to have_css 'a#log-out', text: 'Log out'
   end
 end
 
-feature 'Sign out' do
+# feature 'Facebook sign in' do
+#   let(:email) { 'boom@example.com' }
+
+#   background do
+#     mock_omniauth email
+#     visit root_path
+#   end
+
+#   scenario 'clicking the Facebook sign in link', js: true do
+#     click_on 'Sign in with Facebook'
+#     logged_in email
+#   end
+# end
+
+feature 'Log out', js: true do
   background do
-    sign_in create(:user)
+    log_in create(:user)
   end
 
-  scenario 'clicking the sign out link' do
-    click_on 'Sign out'
-    logged_out
+  scenario 'clicking the log out link' do
+    click_on 'Log out'
+    expect(page).to have_css('#login-form')
   end
 end

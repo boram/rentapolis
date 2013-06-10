@@ -22,6 +22,7 @@ feature 'Sign up' do
       click_button 'Sign up'
     end
 
-    logged_in email
+    # expect(page).to have_content "Logged in as #{email}"
+    # expect(page).to have_css 'a#log-out', text: 'Log out'
   end
 end

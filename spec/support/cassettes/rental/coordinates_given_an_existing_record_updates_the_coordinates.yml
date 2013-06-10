@@ -21,9 +21,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Mon, 27 May 2013 01:02:14 GMT
+      - Mon, 17 Jun 2013 00:07:35 GMT
       Expires:
-      - Tue, 28 May 2013 01:02:14 GMT
+      - Tue, 18 Jun 2013 00:07:35 GMT
       Cache-Control:
       - public, max-age=86400
       Access-Control-Allow-Origin:
@@ -112,14 +112,13 @@ http_interactions:
                        }
                     }
                  },
-                 "postcode_localities" : [],
                  "types" : [ "street_address" ]
               }
            ],
            "status" : "OK"
         }
     http_version: 
-  recorded_at: Mon, 27 May 2013 01:02:14 GMT
+  recorded_at: Mon, 17 Jun 2013 00:07:35 GMT
 - request:
     method: get
     uri: http://maps.googleapis.com/maps/api/geocode/json?address=727%20North%20Broadway,%20Los%20Angeles%20CA%2090012&language=en&sensor=false
@@ -141,9 +140,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Mon, 27 May 2013 01:02:14 GMT
+      - Mon, 17 Jun 2013 00:07:35 GMT
       Expires:
-      - Tue, 28 May 2013 01:02:14 GMT
+      - Tue, 18 Jun 2013 00:07:35 GMT
       Cache-Control:
       - public, max-age=86400
       Access-Control-Allow-Origin:
@@ -222,12 +221,11 @@ http_interactions:
                        }
                     }
                  },
-                 "postcode_localities" : [],
                  "types" : [ "street_address" ]
               }
            ],
            "status" : "OK"
         }
     http_version: 
-  recorded_at: Mon, 27 May 2013 01:02:15 GMT
+  recorded_at: Mon, 17 Jun 2013 00:07:35 GMT
 recorded_with: VCR 2.5.0
