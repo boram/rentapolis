@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Rentapolis</title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Rentapolis</title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
 
-<%= yield %>
+  <body>
+    <%= yield %>
 
-</body>
+    <%= javascript_tag do %>
+      <% if current_user %>
+        window.current_user = <%= UserSerializer.new(current_user, root: false).to_json.html_safe %>;
+      <% end %>
+    <% end %>
+  </body>
 </html>
